@@ -1,4 +1,4 @@
-module github.com/red010b37/cloud.google.com/go/firestore
+module cloud.google.com/go/firestore
 
 go 1.11
 
