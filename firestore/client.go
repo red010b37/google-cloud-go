@@ -132,6 +132,19 @@ func (c *Client) Doc(path string) *DocumentRef {
 	return doc
 }
 
+// GenerateNewDocumentSnapshot generates a new document from a protobuf Document
+func (c *Client) GenerateNewDocumentSnapshot(proto *pb.Document) (*DocumentSnapshot, error) {
+	docRef, err := pathToDoc(proto.Name, c)
+	if err != nil {
+		return nil, err
+	}
+	doc, err := newDocumentSnapshot(docRef, proto, c, proto.UpdateTime)
+	if err != nil {
+		return nil, err
+	}
+	return doc, nil
+}
+
 // CollectionGroup creates a reference to a group of collections that include
 // the given ID, regardless of parent document.
 //
